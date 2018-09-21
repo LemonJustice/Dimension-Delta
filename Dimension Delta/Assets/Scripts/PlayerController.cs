@@ -7,12 +7,16 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 
     public float force = 15;
+    public Collider2D ladderC2d;
+    public Transform ladderT;
     Rigidbody2D rb;
     Animator animator;
+    SpriteRenderer sr;
  
     void Start () {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 	
 	void FixedUpdate () {
@@ -21,11 +25,11 @@ public class PlayerController : MonoBehaviour {
 
         if (rb.velocity.x > 0) //Does the player face right?
         {
-            animator.SetInteger("facingRight", 1);
+            sr.flipX = false; 
         }
-        else if(rb.velocity.x < 0)
+        else if(rb.velocity.x < 0) //Or are they facing left?
         {
-            animator.SetInteger("facingRight", 0);
+            sr.flipX = true;
         }
         if (Input.GetAxis("Horizontal") != 0) //If there is directional input
         {
@@ -36,4 +40,6 @@ public class PlayerController : MonoBehaviour {
             animator.SetInteger("speed" , 0);//Reroutes loop to idle
         }
     }
+
+  
 }
