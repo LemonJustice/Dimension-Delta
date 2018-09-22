@@ -104,6 +104,106 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 120
+        width: 60
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3036473197ffff149b0c273b965298b9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alex_1
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 120
+        width: 60
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 966a957d665839244bb852d05d6113e8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alex_2
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 120
+        width: 60
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3d54df761a0f774381da232110b4d7b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alex_3
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 120
+        width: 60
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 312a0b2ef6b66f840a3e046892a6b6cb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alex_4
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 120
+        width: 60
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfead608b949e214c829bbab06aceb51
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Alex_5
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 60
         height: 120
@@ -114,13 +214,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 980eb6d25ba42024483b68b1d9923869
+      spriteID: 69ab95b59b340c2499e94002c682a2a2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alex_1
+      name: Alex_6
       rect:
         serializedVersion: 2
         x: 60
@@ -134,13 +234,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f01441efd39e6a458e98c7e4a4435f4
+      spriteID: ea679e16599bbcd4d8be951a57e96718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alex_2
+      name: Alex_7
       rect:
         serializedVersion: 2
         x: 120
@@ -154,13 +254,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc0f9568e0471a740afeac08f074abb0
+      spriteID: 4982c6fbc4fb2b84cb63c88b7e40c3fe
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alex_3
+      name: Alex_8
       rect:
         serializedVersion: 2
         x: 180
@@ -174,27 +274,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9365f6022c7b69f4891b710cc82860bf
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Alex_4
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 60
-        height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e510073c5fad3f740be387690bac5b36
+      spriteID: e5a3f80320926944cb69007fe3b1e8b9
       vertices: []
       indices: 
       edges: []

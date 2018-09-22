@@ -492,6 +492,7 @@ GameObject:
   - component: {fileID: 296995168}
   - component: {fileID: 296995167}
   - component: {fileID: 296995169}
+  - component: {fileID: 296995170}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -921,6 +922,19 @@ TilemapCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
+--- !u!114 &296995170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 296995163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c882704b72f0e04489378dd860b266d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 445376471}
+  player: {fileID: 445376472}
 --- !u!1 &439098531
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,7 +1089,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 445376468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.1, y: -3.45, z: 0.12435236}
+  m_LocalPosition: {x: 8.15, y: -3.69, z: 0.12435236}
   m_LocalScale: {x: 0.986, y: 0.92684, z: 0.986}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1113,7 +1127,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 3
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1130,7 +1144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249e2d3253e47da49b6d2d9d361f8950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 15
+  force: 23
+  jump: 450
   ladderC2d: {fileID: 0}
   ladderT: {fileID: 0}
 --- !u!61 &445376474
@@ -1145,7 +1160,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.056521818, y: 0.048443317}
+  m_Offset: {x: 0.017027497, y: -0.004191041}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1156,7 +1171,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.039826, y: 2.3031135}
+  m_Size: {x: 0.7153969, y: 2.3162267}
   m_EdgeRadius: 0
 --- !u!1 &519420028
 GameObject:
@@ -1563,7 +1578,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 9.500257, y: -2.5015764}
+  m_Offset: {x: 9.541065, y: -2.5015764}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1574,7 +1589,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3307171, y: 2.9968472}
+  m_Size: {x: 0.14268398, y: 2.9968472}
   m_EdgeRadius: 0
 --- !u!50 &2130080005
 Rigidbody2D:
@@ -1608,3 +1623,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 445376472}
+  climb: 12
