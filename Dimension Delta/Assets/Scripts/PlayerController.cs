@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     public float jump = 50;
     public Collider2D ladderC2d;
     public Transform ladderT;
+    Collider2D c2D;
     Rigidbody2D rb;
     Animator animator;
     SpriteRenderer sr;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        c2D = GetComponent<Collider2D>();
         //rb.constraints = RigidbodyConstraints2D.None;
     }
 	
@@ -47,11 +49,19 @@ public class PlayerController : MonoBehaviour {
             rb.AddForce(Vector2.up * jump);
             animator.SetBool("Grounded", false);
         }
-        if(animator.GetBool("Grounded") == true)
+        if (animator.GetBool("Grounded") == true)
         {
             animator.SetBool("Jumping", false);
         }
     }
 
-  
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Slime")
+        {
+            Physics2D.IgnoreCollision(collision.collider, c2D);
+        }
+    }
+
+
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class LadderCode : MonoBehaviour {
 
     public Rigidbody2D player;
+    public Animator ani;
     public int climb;
     GridLayout gridLayout;
     Vector3Int cellPosition;
@@ -17,24 +18,29 @@ public class LadderCode : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        //Going Up!
-        if (Input.GetKey("up") == true || Input.GetAxis("Vertical") > 0)
+        if (other.tag == "Player")
         {
-            cellPosition = gridLayout.WorldToCell(new Vector3((int)(other.transform.position.x + .05), other.transform.position.y, other.transform.position.z));
-            place = gridLayout.CellToWorld(cellPosition);
-            other.transform.SetPositionAndRotation(new Vector2(place.x + (float).5, other.transform.position.y), new Quaternion());
-            player.constraints = RigidbodyConstraints2D.FreezeRotation;
-            player.AddForce(new Vector2(0, 3 * climb));
-            player.velocity.Set(0, player.velocity.y);
-        }
-        else
-        {
-           
+            //Going Up!
+            if (Input.GetKey("up") == true || Input.GetAxis("Vertical") > 0)
+            {
+                cellPosition = gridLayout.WorldToCell(new Vector3((int)(other.transform.position.x + .05), other.transform.position.y, other.transform.position.z));
+                place = gridLayout.CellToWorld(cellPosition);
+                other.transform.SetPositionAndRotation(new Vector2(place.x + (float).5, other.transform.position.y), new Quaternion());
+                player.constraints = RigidbodyConstraints2D.FreezeRotation;
+                player.AddForce(new Vector2(0, 3 * climb));
+                player.velocity.Set(0, player.velocity.y);
+                ani.SetInteger("onLadder", 1);
+            }
+            else
+            {
+                ani.SetInteger("onLadder", 0);
+            }
         }
 
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         player.constraints = RigidbodyConstraints2D.FreezeRotation;
+        ani.SetInteger("onLadder", 0);
     }
 }
