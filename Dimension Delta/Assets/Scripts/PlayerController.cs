@@ -8,12 +8,15 @@ public class PlayerController : MonoBehaviour {
 
     public float force = 15;
     public float jump = 50;
-    public Collider2D ladderC2d;
-    public Transform ladderT;
     Collider2D c2D;
     Rigidbody2D rb;
     Animator animator;
     SpriteRenderer sr;
+    public RectTransform hpBar;
+    public Text hpString;
+    public float hp;
+    public int maxhp;
+    public float PixperHP;
     int struggle = 0;
     bool preJump;
     bool preMove;
@@ -24,11 +27,17 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         c2D = GetComponent<Collider2D>();
+        maxhp = 20;
+        hp = maxhp;
+        PixperHP = 70 / maxhp;
         //rb.constraints = RigidbodyConstraints2D.None;
     }
 	
 	void FixedUpdate () {
-        rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * force, (float).2)); //get input from keyboard/controller
+
+        //** MOVEMENT **//
+
+        if (!slimed) rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * force, (float).2)); //get input from keyboard/controller
         //Good speed from 23 force, coming to a quick stop is thanks to the 2 linear drag on rigid body and 3 grav
 
         if (rb.velocity.x > 0 && rb.constraints != RigidbodyConstraints2D.FreezePositionX) //Does the player face right?
@@ -89,6 +98,20 @@ public class PlayerController : MonoBehaviour {
             animator.SetBool("Slimed", false);
         }
         slimed = animator.GetBool("Slimed");
+
+        if (Input.GetKeyDown("d"))
+        {
+            Debug.Log("You have taken damage!!");
+            hp -= 1;
+        }
+
+        //** HEALTH MECHANICS **//
+
+        hpBar.sizeDelta = new Vector2(16, (60 - ((maxhp - hp) * PixperHP)));
+        hpString.text = (int)hp + "\n\n" + (int)maxhp;
+        hp += 0.005f;
+        if (hp < 0) hp = 0;
+        if (hp > maxhp) hp = maxhp;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
