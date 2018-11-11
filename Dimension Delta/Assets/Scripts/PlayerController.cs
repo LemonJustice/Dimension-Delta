@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour {
     Rigidbody2D rb;
     Animator animator;
     SpriteRenderer sr;
+    int struggle = 0;
+    bool preJump;
+    bool preMove;
+    bool slimed;
  
     void Start () {
         animator = GetComponent<Animator>();
@@ -29,30 +33,62 @@ public class PlayerController : MonoBehaviour {
 
         if (rb.velocity.x > 0 && rb.constraints != RigidbodyConstraints2D.FreezePositionX) //Does the player face right?
         {
-            sr.flipX = false; 
+            if(!slimed)sr.flipX = false;
         }
         else if(rb.velocity.x < 0 && rb.constraints != RigidbodyConstraints2D.FreezePositionX) //Or are they facing left?
         {
-            sr.flipX = true;
+            if (!slimed) sr.flipX = true;
         }
         if (Input.GetAxis("Horizontal") != 0) //If there is directional input
         {
-            animator.SetInteger("speed", 1);//starts to loop walk animation
+            if (!slimed)
+            {
+                animator.SetInteger("speed", 1);
+            }
+            if(slimed)
+            {
+                if (!preMove) struggle++;
+                preMove = true;
+                animator.SetBool("strR?", true);
+            }
         }
         else // No input
         {
-            animator.SetInteger("speed" , 0);//Reroutes loop to idle
+            animator.SetInteger("speed", 0);//Reroutes loop to idle
+            preMove = false;
+            animator.SetBool("strR?", false);
         }
         if (Input.GetAxis("Jump") > 0 && animator.GetBool("Grounded") == true) //Need to press jump and be on the ground to jump
         {
             animator.SetBool("Jumping", true); //Jump squat
-            rb.AddForce(Vector2.up * jump);
-            animator.SetBool("Grounded", false);
+            if (!slimed)
+            {
+                rb.AddForce(Vector2.up * jump);
+                animator.SetBool("Grounded", false);
+            }
+            else{
+                if (!preJump)
+                {
+                    struggle++;
+                }
+            }
+            preJump = true;
         }
         if (animator.GetBool("Grounded") == true)
         {
             animator.SetBool("Jumping", false);
         }
+
+        if(Input.GetAxis("Jump") == 0)
+        {
+            preJump = false;
+        }
+
+        if (struggle > 10)
+        {
+            animator.SetBool("Slimed", false);
+        }
+        slimed = animator.GetBool("Slimed");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -60,6 +96,9 @@ public class PlayerController : MonoBehaviour {
         if(collision.gameObject.tag == "Slime")
         {
             Physics2D.IgnoreCollision(collision.collider, c2D);
+            Destroy(collision.gameObject);
+            animator.SetBool("Slimed", true);
+            struggle = 0;
         }
     }
 

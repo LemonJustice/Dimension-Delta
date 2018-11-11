@@ -11,7 +11,8 @@ public class SlimeAI : MonoBehaviour {
     public int walkingSpeed;
     private bool walking = true;
     private int frameCheck = 60;
-	void Start () {
+
+    void Start () {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
      }
