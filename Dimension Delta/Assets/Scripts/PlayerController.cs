@@ -123,6 +123,33 @@ public class PlayerController : MonoBehaviour {
             animator.SetBool("Slimed", true);
             struggle = 0;
         }
+        if(collision.gameObject.tag == "Ground")
+        {
+            animator.SetBool("Grounded", true);
+            animator.SetBool("Jumping", false);
+        }
+        if(collision.gameObject.tag == "Platforms")
+        {
+            if(rb.velocity.y <= 0)
+            {
+                animator.SetBool("Grounded", true);
+                animator.SetBool("Jumping", false);
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            animator.SetBool("Grounded", false);
+            animator.SetBool("Jumping", true);
+        }
+        if (collision.gameObject.tag == "Platforms")
+        {
+            animator.SetBool("Grounded", false);
+            animator.SetBool("Jumping", true);
+        }
     }
 
 
