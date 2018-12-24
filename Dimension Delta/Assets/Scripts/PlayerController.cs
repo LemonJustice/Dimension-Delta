@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour {
     public float hp;
     public int maxhp;
     public float PixperHP;
+    public Animator arms;
+    public Animator head;
     int struggle = 0;
     bool preJump;
     bool preMove;
@@ -42,11 +44,21 @@ public class PlayerController : MonoBehaviour {
 
         if (rb.velocity.x > 0 && rb.constraints != RigidbodyConstraints2D.FreezePositionX) //Does the player face right?
         {
-            if(!slimed)sr.flipX = false;
+            if (!slimed)
+            {
+                sr.flipX = false;
+                arms.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                head.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
         }
         else if(rb.velocity.x < 0 && rb.constraints != RigidbodyConstraints2D.FreezePositionX) //Or are they facing left?
         {
-            if (!slimed) sr.flipX = true;
+            if (!slimed)
+            {
+                sr.flipX = true;
+                arms.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                head.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
         }
         if (Input.GetAxis("Horizontal") != 0) //If there is directional input
         {
@@ -83,11 +95,6 @@ public class PlayerController : MonoBehaviour {
             }
             preJump = true;
         }
-        if (animator.GetBool("Grounded") == true)
-        {
-            animator.SetBool("Jumping", false);
-        }
-
         if(Input.GetAxis("Jump") == 0)
         {
             preJump = false;
@@ -96,14 +103,9 @@ public class PlayerController : MonoBehaviour {
         if (struggle > 10)
         {
             animator.SetBool("Slimed", false);
+            head.SetBool("slimed", false);
         }
         slimed = animator.GetBool("Slimed");
-
-        if (Input.GetKeyDown("d"))
-        {
-            Debug.Log("You have taken damage!!");
-            hp -= 1;
-        }
 
         //** HEALTH MECHANICS **//
 
@@ -112,6 +114,19 @@ public class PlayerController : MonoBehaviour {
         hp += 0.005f;
         if (hp < 0) hp = 0;
         if (hp > maxhp) hp = maxhp;
+
+        //** Debuging **//
+
+        if (Input.GetKeyDown("d"))
+        {
+            Debug.Log("You have taken damage!!");
+            hp -= 1;
+        }
+        if (Input.GetKeyDown("q"))
+        {
+            Debug.Log("Switching weapons!");
+            arms.SetInteger("armState", (arms.GetInteger("armState") + 1) % 3);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -121,6 +136,7 @@ public class PlayerController : MonoBehaviour {
             Physics2D.IgnoreCollision(collision.collider, c2D);
             Destroy(collision.gameObject);
             animator.SetBool("Slimed", true);
+            head.SetBool("slimed", true);
             struggle = 0;
         }
         if(collision.gameObject.tag == "Ground")

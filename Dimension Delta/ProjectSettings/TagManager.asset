@@ -8,6 +8,7 @@ TagManager:
   - Slime
   - Ground
   - Platforms
+  - Ladder
   layers:
   - Default
   - TransparentFX
